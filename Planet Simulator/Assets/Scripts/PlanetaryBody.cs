@@ -6,29 +6,55 @@ public class PlanetaryBody : MonoBehaviour
     public float radius;
     public Vector3 startingVelocity;
     public Vector3 currentVelocity;
+    public float maxVelocity;
+    public float maxDistance;
+    public float minDistance;
 
     void Awake()
     {
         currentVelocity = startingVelocity;
     }
 
+    private void FixedUpdate()
+    {
+        if (currentVelocity.magnitude >= maxVelocity)
+        {
+            maxVelocity = currentVelocity.magnitude;
+        }
+        if(transform.position.magnitude >= maxDistance)
+        {
+            maxDistance = transform.position.magnitude;
+        }
+        if(transform.position.magnitude <= minDistance)
+        {
+            minDistance = transform.position.magnitude;
+        }
+    }
+
     public void UpdateVelocity(PlanetaryBody[] allPlanetaryBodies, float timeStep)
     {
-        foreach (var otherbody in allPlanetaryBodies)
+        if (name == "Sun")
         {
-            if(otherbody != this)
+            currentVelocity = Vector3.zero;
+        }
+        else
+        {
+            foreach (var otherbody in allPlanetaryBodies)
             {
-                float squareDistance = (otherbody.GetComponent<Rigidbody>().position - this.GetComponent<Rigidbody>().position).sqrMagnitude;
-                Vector3 forceDirection = (otherbody.GetComponent<Rigidbody>().position - this.GetComponent<Rigidbody>().position).normalized;
-                Vector3 force = forceDirection * UniversalConstant.gravitationalConstant * mass * otherbody.mass / squareDistance;
-                Vector3 acceleratiion = force / mass;
-                currentVelocity += acceleratiion * timeStep;
+                if (otherbody != this)
+                {
+                    float squareDistance = (otherbody.transform.position - this.transform.position).sqrMagnitude;
+                    Vector3 forceDirection = (otherbody.transform.position - this.transform.position).normalized;
+                    Vector3 force = forceDirection * UniversalConstant.gravitationalConstant * mass * otherbody.mass / squareDistance;
+                    Vector3 acceleratiion = force / mass;
+                    currentVelocity += acceleratiion * timeStep;
+                }
             }
         }
     }
 
     public void UpdatePosition(float timeStep)
     {
-        this.GetComponent<Rigidbody>().position += currentVelocity * timeStep;
+        this.transform.position += currentVelocity * timeStep;
     }
 }
