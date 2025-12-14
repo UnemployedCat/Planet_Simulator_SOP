@@ -5,7 +5,7 @@ public class PlanetaryBody : MonoBehaviour
     public float mass;
     public float radius;
     public Vector3 startingVelocity;
-    Vector3 currentVelocity;
+    public Vector3 currentVelocity;
 
     void Awake()
     {
