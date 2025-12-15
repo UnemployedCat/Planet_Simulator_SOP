@@ -9,6 +9,7 @@ public class PlanetaryBody : MonoBehaviour
     public float maxVelocity;
     public float maxDistance;
     public float minDistance;
+    bool isReversed;
 
     void Awake()
     {
@@ -31,7 +32,7 @@ public class PlanetaryBody : MonoBehaviour
         }
     }
 
-    public void UpdateVelocity(PlanetaryBody[] allPlanetaryBodies, float timeStep)
+    public void UpdateVelocity(PlanetaryBody[] allPlanetaryBodies, float timeStep, bool reverse)
     {
         if (name == "Sun")
         {
@@ -50,6 +51,11 @@ public class PlanetaryBody : MonoBehaviour
                     currentVelocity += acceleratiion * timeStep;
                 }
             }
+        }
+        if (reverse == true && !isReversed)
+        {
+            currentVelocity = currentVelocity * -1;
+            isReversed = true;
         }
     }
 
