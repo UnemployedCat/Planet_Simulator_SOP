@@ -16,6 +16,7 @@ public class PlanetaryBody : MonoBehaviour
         currentVelocity = startingVelocity;
     }
 
+    //Updates the various extra data
     private void FixedUpdate()
     {
         if (currentVelocity.magnitude >= maxVelocity)
@@ -34,6 +35,7 @@ public class PlanetaryBody : MonoBehaviour
 
     public void UpdateVelocity(PlanetaryBody[] allPlanetaryBodies, float timeStep, bool reverse)
     {
+        //Makes it so the sun never moves
         if (name == "Sun")
         {
             currentVelocity = Vector3.zero;
@@ -44,6 +46,7 @@ public class PlanetaryBody : MonoBehaviour
             {
                 if (otherbody != this)
                 {
+                    //Does Newtons gravity equation
                     float squareDistance = (otherbody.transform.position - this.transform.position).sqrMagnitude;
                     Vector3 forceDirection = (otherbody.transform.position - this.transform.position).normalized;
                     Vector3 force = forceDirection * UniversalConstant.gravitationalConstant * mass * otherbody.mass / squareDistance;
@@ -52,6 +55,7 @@ public class PlanetaryBody : MonoBehaviour
                 }
             }
         }
+        //Extra for testing the simulation
         if (reverse == true && !isReversed)
         {
             currentVelocity = currentVelocity * -1;

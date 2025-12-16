@@ -24,6 +24,7 @@ public class OrbitDisplayer : MonoBehaviour
         PlanetaryBody[] planetaryBodies = FindObjectsByType<PlanetaryBody>(FindObjectsSortMode.None);
         var virtualPlanetaryBody = new VirtualPlanetaryBodies[planetaryBodies.Length];
         var drawPoints = new Vector3[planetaryBodies.Length][];
+
         int referenceFrameIndex = 0;
         Vector3 referenceBodyStartingPosition = Vector3.zero;
 
@@ -56,6 +57,7 @@ public class OrbitDisplayer : MonoBehaviour
             {
                 Vector3 newPosition = virtualPlanetaryBody[i].position + virtualPlanetaryBody[i].velocity * timeStep;
                 virtualPlanetaryBody[i].position = newPosition;
+
                 if (relativToBody)
                 {
                     var referenceFrameOffset = referenceBodyPosition - referenceBodyStartingPosition;

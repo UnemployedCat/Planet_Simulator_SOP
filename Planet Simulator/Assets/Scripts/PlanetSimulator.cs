@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class PlanetSimulator : MonoBehaviour
 {
-    //coment for something
     PlanetaryBody[] planets;
     public int timeBeforeReverse;
     public bool testReversal;
+    public float setTimeScale = 1;
 
     void Awake()
     {
@@ -15,6 +15,14 @@ public class PlanetSimulator : MonoBehaviour
   
     private void FixedUpdate()
     {
+        bool isTimeStopped = false;
+        //Updates the time scale
+        if (!isTimeStopped)
+        {
+            Time.timeScale = setTimeScale;
+        }
+
+        //Does the simulation of planets
         for (int i = 0; i < planets.Length; i++)
         {
             if (Time.time >= timeBeforeReverse && testReversal)
@@ -31,9 +39,13 @@ public class PlanetSimulator : MonoBehaviour
         {
             planets[i].UpdatePosition(UniversalConstant.physicsTimeStep);
         }
+
+        //Extra for testing the simulation
         if (Time.time >= timeBeforeReverse * 2 && testReversal)
         {
             Time.timeScale = 0;
+            isTimeStopped = true;
+            setTimeScale = 0;
         }
     }
 }
