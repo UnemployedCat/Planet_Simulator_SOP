@@ -6,6 +6,7 @@ public class PlanetSimulator : MonoBehaviour
     public int timeBeforeReverse;
     public bool testReversal;
     public float setTimeScale = 1;
+    public float timeSinceStart;
 
     void Awake()
     {
@@ -39,6 +40,8 @@ public class PlanetSimulator : MonoBehaviour
         {
             planets[i].UpdatePosition(UniversalConstant.physicsTimeStep);
         }
+
+        timeSinceStart = Time.time;
 
         //Extra for testing the simulation
         if (Time.time >= timeBeforeReverse * 2 && testReversal)

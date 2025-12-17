@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5370157024172018794}
   - component: {fileID: 7740438063299662410}
+  - component: {fileID: 6803954372255800458}
   m_Layer: 0
   m_Name: Orbit displayer
   m_TagString: Untagged
@@ -44,10 +45,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b4b28a135a839f4fb5d37b292a0ef6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfSteps: 500
-  timeStep: 0.1
+  numberOfSteps: 2000
+  timeStep: 0.001
   usePhysicsTimeStep: 0
-  relativToBody: 1
+  relativToBody: 0
   centerBody: {fileID: 0}
-  lineWidth: 0
+  lineWidth: 1
   useThickLines: 0
+--- !u!114 &6803954372255800458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7682744692702311260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b8414a54e03a96449f1aa9326f4b33f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeBeforeReverse: 0
+  testReversal: 0
+  setTimeScale: 1
+  timeSinceStart: 0
