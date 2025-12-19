@@ -3,13 +3,13 @@ using UnityEngine;
 public class PlanetaryBody : MonoBehaviour
 {
     public float mass;
-    public float radius;
     public Vector3 startingVelocity;
     public Vector3 currentVelocity;
     public float maxVelocity;
     public float maxDistance;
     public float minDistance;
     bool isReversed;
+    public PlanetaryBody centerPlanet;
 
     void Awake()
     {
@@ -19,15 +19,19 @@ public class PlanetaryBody : MonoBehaviour
     //Updates the various extra data
     private void FixedUpdate()
     {
+        float distanceBetween;
+
+        distanceBetween = (centerPlanet.transform.position - this.transform.position).magnitude;
+
         if (currentVelocity.magnitude >= maxVelocity)
         {
             maxVelocity = currentVelocity.magnitude;
         }
-        if(transform.position.magnitude >= maxDistance)
+        if(distanceBetween >= maxDistance)
         {
             maxDistance = transform.position.magnitude;
         }
-        if(transform.position.magnitude <= minDistance)
+        if(distanceBetween <= minDistance)
         {
             minDistance = transform.position.magnitude;
         }

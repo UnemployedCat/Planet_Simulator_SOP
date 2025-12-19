@@ -308,9 +308,21 @@ PrefabInstance:
       value: Utility
       objectReference: {fileID: 0}
     - target: {fileID: 7740438063299662410, guid: 542b923d1d1982341aec5aa9ef141e1a, type: 3}
+      propertyPath: timeStep
+      value: 0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 7740438063299662410, guid: 542b923d1d1982341aec5aa9ef141e1a, type: 3}
       propertyPath: centerBody
       value: 
       objectReference: {fileID: 470352318}
+    - target: {fileID: 7740438063299662410, guid: 542b923d1d1982341aec5aa9ef141e1a, type: 3}
+      propertyPath: numberOfSteps
+      value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7740438063299662410, guid: 542b923d1d1982341aec5aa9ef141e1a, type: 3}
+      propertyPath: usePhysicsTimeStep
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
